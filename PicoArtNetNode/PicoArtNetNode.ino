@@ -36,6 +36,10 @@
 const char* SSID = "your-wifi-ssid";
 const char* PASSWORD = "your-wifi-password";
 
+// Initialize variable for connection status check 
+unsigned long previousMillis = 0;
+unsigned long interval = 30000;
+
 // Create a universe
 #define UNIVERSE_LENGTH 512
 uint8_t channels[UNIVERSE_LENGTH + 1];
@@ -153,4 +157,15 @@ void setup()
 void loop()
 {
   artnet.read();
+
+  //  Refresh last time check variable
+  unsigned long currentMillis = millis();
+  // if WiFi is not connected, try reconnecting afetr "interval" millisecond
+  if ((WiFi.status() != WL_CONNECTED) && (currentMillis - previousMillis >=interval)) {
+    Serial.print(millis());
+    Serial.println("Reconnecting to WiFi...");
+    WiFi.disconnect();
+    connectToWifi();
+    previousMillis = currentMillis;
+    }
 }
