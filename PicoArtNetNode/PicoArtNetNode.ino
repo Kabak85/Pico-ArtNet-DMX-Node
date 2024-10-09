@@ -27,8 +27,8 @@
 #include "OLED.h"
 
 // Configure outputs
-#define OUTPUT_A_UNIVERSE 1 // Which universe maps to output A
-#define OUTPUT_B_UNIVERSE 2 // Which universe maps to output B
+#define OUTPUT_A_UNIVERSE 0 // Which universe maps to output A
+#define OUTPUT_B_UNIVERSE 1 // Which universe maps to output B
 #define OUTPUT_A_GPIO 0
 #define OUTPUT_B_GPIO 1
 
